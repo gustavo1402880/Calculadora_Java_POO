@@ -10,6 +10,10 @@ import com.example.funcoes.basicas.Subtracao;
 import com.example.funcoes.complexas.Fatorial;
 import com.example.funcoes.complexas.Potenciacao;
 import com.example.funcoes.complexas.Radiciacao;
+import com.example.funcoes.conversoes.ConversaoArmazenamento;
+import com.example.funcoes.conversoes.ConversaoProcessamento;
+import com.example.funcoes.conversoes.ConversaoRede;
+import com.example.funcoes.conversoes.ConversaoTempo;
 import com.example.funcoes.equacoesEspeciais.EquacaoPrimeiroGrau;
 import com.example.funcoes.equacoesEspeciais.EquacaoSegundoGrau;
 import com.example.funcoes.equacoesTrigonometricas.SenoCossenoTangente;
@@ -44,8 +48,9 @@ public class Main {
             System.out.println("[12] - Equação do 1º Grau");
             System.out.println("[13] - Equação do 2º Grau");
             System.out.println("[14] - Calcular Seno Cosseno e Tangente");
-            System.out.println("[15] - Zerar Calculadora");
-            System.out.println("[16] - Sair");
+            System.out.println("[15] - Conversões de Unidades");
+            System.out.println("[16] - Zerar Calculadora");
+            System.out.println("[17] - Sair");
 
             Utillity.cls(1);
 
@@ -72,8 +77,9 @@ public class Main {
                     case 12 -> EquacaoPrimeiroGrau.operacao();
                     case 13 -> EquacaoSegundoGrau.operacao();
                     case 14 -> SenoCossenoTangente.inserirDadosGraus();
-                    case 15 -> Calculadora.zerarcalculadora();
-                    case 16 -> System.out.println("Saindo...");
+                    case 15 -> menuDeConversoes();
+                    case 16 -> Calculadora.zerarcalculadora();
+                    case 17 -> System.out.println("Saindo...");
                     default -> System.out.println("Opção Inválida!\nTente Novamente!");
                 }
             
@@ -83,6 +89,37 @@ public class Main {
                 System.out.println("Opção Inválida!");
             }
         }
-        while(opcao != 16);
+        while(opcao != 17);
+    }
+    public static void menuDeConversoes()
+    {
+        int opcao = 0;
+
+        do {
+            System.out.println("=== Conversões de Unidades ===");
+            System.out.println("[1] - Tempo de Execução");
+            System.out.println("[2] - Armazenamento");
+            System.out.println("[3] - Velocidade de Rede");
+            System.out.println("[4] - Processamento");
+            System.out.println("[5] - Voltar");
+            try {
+                opcao = Utillity.rdInt();
+
+                switch (opcao)
+                {
+                    case 1 -> ConversaoTempo.menuConversaoTempo();
+                    case 2 -> ConversaoArmazenamento.menuConversaoArmazenamento();
+                    case 3 -> ConversaoRede.menuConversaoRede();
+                    case 4 -> ConversaoProcessamento.menuConversaoProcessamento();
+                    case 5 -> System.out.println("Voltando à Calculadora...");
+                    default -> System.out.println("Opção Inválida!");
+                }
+            }
+            catch (InputMismatchException e)
+            {
+                System.out.println("Escopo Inválido, Tente Novamente!");
+            }
+        }
+        while(opcao != 5);
     }
 }
